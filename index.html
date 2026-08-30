@@ -1165,6 +1165,415 @@ const BATCH_C = [
   ]
 },
 ];
+
+const BATCH_D = [
+{
+  id: 'm7',
+  title: `Módulo 7 — Diagrama de estados: o ciclo de vida de um objeto`,
+  unidade: `Bloco 4`,
+  aulas: [
+    {
+      code: 'PS-M7A1',
+      title: `Estados, transições e eventos`,
+      duracao: `50 minutos`,
+      habilidadeTecnica: `Reconhecer quando um objeto precisa de um diagrama de estados e representar estados, transições e eventos.`,
+      habilidadeSocioemocional: `Perceber que um mesmo objeto pode se comportar de formas diferentes dependendo do seu "momento" — e que isso não é bagunça, é informação.`,
+      pontoDePartida: {
+        titulo: `A Consulta muda de "cara" o tempo todo`,
+        texto: `<p>O diagrama de classes mostra que uma Consulta tem um atributo <code>status</code>. Mas ele não mostra: que valores esse status pode assumir, em que ordem eles mudam, e o que dispara cada mudança.</p>
+<p>Pensem: uma consulta recém-criada pode ir direto para "realizada"? Ou existe um caminho obrigatório pelo meio? E uma consulta "realizada" pode voltar a ser "agendada"?</p>`
+      },
+      conceito: [
+        {
+          heading: `Quando vale a pena desenhar um diagrama de estados`,
+          html: `<p>Nem toda classe precisa de um diagrama de estados — só vale a pena para objetos cujo <strong>comportamento muda de acordo com uma condição interna</strong> (o "estado" em que estão), não só de acordo com os valores dos atributos. Bons candidatos: um Pedido (novo → pago → enviado → entregue), uma Consulta (agendada → confirmada → realizada), um documento (rascunho → em revisão → publicado).</p>`
+        },
+        {
+          heading: `As peças do diagrama`,
+          html: `<ul>
+<li><strong>Estado inicial:</strong> círculo preenchido — de onde o objeto "nasce".</li>
+<li><strong>Estado:</strong> retângulo de cantos arredondados, com o nome da situação (ex.: "Agendada").</li>
+<li><strong>Transição:</strong> seta rotulada com o evento que a dispara (ex.: "paciente confirma presença").</li>
+<li><strong>Estado final:</strong> círculo com um anel ao redor — para onde o objeto "morre" (deixa de mudar).</li>
+</ul>
+<p>Repare que é parecido com o diagrama de atividades — mas ali os retângulos são <em>ações</em> (verbos, "o que fazer"); aqui, os retângulos são <em>situações</em> (substantivos/adjetivos, "como o objeto está").</p>`
+        },
+        {
+          heading: `Exemplo: um Pedido simples`,
+          html: `<div style="overflow-x:auto"><svg viewBox="0 0 460 100" width="100%" style="max-width:460px" xmlns="http://www.w3.org/2000/svg">
+<style>text{font-family:Poppins,sans-serif;font-size:10px;fill:currentColor}</style>
+<circle cx="15" cy="50" r="7" fill="currentColor"/>
+<rect x="40" y="35" width="80" height="30" rx="15" fill="none" stroke="currentColor" stroke-width="1.3"/><text x="80" y="54" text-anchor="middle">Novo</text>
+<rect x="180" y="35" width="80" height="30" rx="15" fill="none" stroke="currentColor" stroke-width="1.3"/><text x="220" y="54" text-anchor="middle">Pago</text>
+<rect x="320" y="35" width="120" height="30" rx="15" fill="none" stroke="currentColor" stroke-width="1.3"/><text x="380" y="54" text-anchor="middle">Entregue</text>
+<line x1="22" y1="50" x2="40" y2="50" stroke="currentColor" stroke-width="1.2" marker-end="url(#a5)"/>
+<line x1="120" y1="50" x2="180" y2="50" stroke="currentColor" stroke-width="1.2" marker-end="url(#a5)"/><text x="123" y="42" font-size="8.5">pagamento aprovado</text>
+<line x1="260" y1="50" x2="320" y2="50" stroke="currentColor" stroke-width="1.2" marker-end="url(#a5)"/><text x="263" y="42" font-size="8.5">entrega confirmada</text>
+<defs><marker id="a5" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="currentColor"/></marker></defs>
+</svg></div>
+<p>Cada seta representa um evento do mundo real que empurra o objeto de um estado para o outro. Sem um evento, o Pedido fica parado no estado em que está — ele nunca muda "sozinho".</p>`
+        }
+      ],
+      colocandoEmPratica: {
+        enunciado: `<p><strong>Ordenando estados soltos</strong> (10 minutos, em dupla)</p>
+<p>Um documento colaborativo passa pelos seguintes eventos, fora de ordem: "revisor aprova", "autor termina o rascunho", "autor publica", "revisor pede correção". Desenhem o diagrama de estados completo (Rascunho → Em revisão → Aprovado → Publicado), incluindo o caminho de volta para Rascunho quando o revisor pede correção.</p>`,
+        dica: `Um mesmo estado pode ter mais de uma seta saindo dele, cada uma para um evento diferente — "Em revisão" tem duas saídas possíveis aqui.`
+      },
+      quiz: [
+        {
+          question: `O que diferencia um "estado" de uma "atividade" (do diagrama de atividades)?`,
+          options: [
+            `Não há diferença, são a mesma coisa com nomes diferentes`,
+            `Estado é uma situação em que o objeto se encontra (substantivo/adjetivo); atividade é uma ação sendo executada (verbo)`,
+            `Estado só existe em bancos de dados`,
+            `Atividade é sempre mais rápida que um estado`
+          ],
+          correct: 1,
+          feedback: `Estado descreve "como o objeto está" (ex.: Pago); atividade descreve "o que está sendo feito" (ex.: Processar pagamento).`
+        }
+      ],
+      sintese: [
+        `O diagrama de estados vale a pena para objetos cujo comportamento muda de acordo com uma situação interna, não só com os valores dos atributos.`,
+        `Suas peças são: estado inicial (círculo cheio), estados (retângulos arredondados), transições (setas rotuladas com o evento) e estado final (círculo com anel).`,
+        `Sem um evento, o objeto nunca muda de estado sozinho.`
+      ]
+    },
+    {
+      code: 'PS-M7A2',
+      title: `Modelando o ciclo de vida da Consulta`,
+      duracao: `50 minutos`,
+      habilidadeTecnica: `Representar condições de guarda numa transição e desenhar um diagrama de estados completo para um caso realista.`,
+      habilidadeSocioemocional: `Antecipar exceções (cancelamentos, faltas) como parte natural do ciclo de vida, não como "bugs".`,
+      pontoDePartida: {
+        titulo: `E se o paciente faltar?`,
+        texto: `<p>Voltando à Consulta do hospital: além do caminho "feliz" (agendada → confirmada → realizada), existem pelo menos dois desvios: o paciente pode cancelar antes da data, ou pode simplesmente faltar sem avisar.</p>
+<p>Esses dois casos levam a estados finais diferentes — e nenhum dos dois deveria voltar para "agendada".</p>`
+      },
+      conceito: [
+        {
+          heading: `Condição de guarda: uma transição com "se"`,
+          html: `<p>Às vezes, o mesmo evento pode levar a caminhos diferentes dependendo de uma condição. Escrevemos isso entre colchetes, logo após o evento: <code>evento [condição]</code>. Exemplo: <code>data chega [paciente compareceu]</code> leva a "Realizada"; <code>data chega [paciente não compareceu]</code> leva a "Faltou".</p>`
+        },
+        {
+          heading: `Diagrama completo da Consulta`,
+          html: `<div style="overflow-x:auto"><svg viewBox="0 0 480 230" width="100%" style="max-width:480px" xmlns="http://www.w3.org/2000/svg">
+<style>text{font-family:Poppins,sans-serif;font-size:9.5px;fill:currentColor}</style>
+<circle cx="15" cy="30" r="7" fill="currentColor"/>
+<rect x="40" y="15" width="90" height="30" rx="15" fill="none" stroke="currentColor" stroke-width="1.3"/><text x="85" y="34" text-anchor="middle">Agendada</text>
+<rect x="200" y="15" width="100" height="30" rx="15" fill="none" stroke="currentColor" stroke-width="1.3"/><text x="250" y="34" text-anchor="middle">Confirmada</text>
+<rect x="370" y="15" width="95" height="30" rx="15" fill="none" stroke="currentColor" stroke-width="1.3"/><text x="417" y="34" text-anchor="middle">Realizada</text>
+<circle cx="417" cy="70" r="9" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="417" cy="70" r="4.5" fill="currentColor"/>
+<rect x="200" y="150" width="100" height="30" rx="15" fill="none" stroke="currentColor" stroke-width="1.3"/><text x="250" y="169" text-anchor="middle">Faltou</text>
+<circle cx="250" cy="205" r="9" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="250" cy="205" r="4.5" fill="currentColor"/>
+<rect x="40" y="150" width="100" height="30" rx="15" fill="none" stroke="currentColor" stroke-width="1.3"/><text x="90" y="169" text-anchor="middle">Cancelada</text>
+<circle cx="90" cy="205" r="9" fill="none" stroke="currentColor" stroke-width="1.3"/><circle cx="90" cy="205" r="4.5" fill="currentColor"/>
+<line x1="22" y1="30" x2="40" y2="30" stroke="currentColor" stroke-width="1.2" marker-end="url(#a6)"/>
+<line x1="130" y1="30" x2="200" y2="30" stroke="currentColor" stroke-width="1.2" marker-end="url(#a6)"/><text x="132" y="22">paciente confirma</text>
+<line x1="300" y1="30" x2="370" y2="30" stroke="currentColor" stroke-width="1.2" marker-end="url(#a6)"/><text x="303" y="22">data chega [compareceu]</text>
+<line x1="417" y1="45" x2="417" y2="61" stroke="currentColor" stroke-width="1.2" marker-end="url(#a6)"/>
+<path d="M300,40 C330,90 300,140 300,150" fill="none" stroke="currentColor" stroke-width="1.1" marker-end="url(#a6)"/><text x="305" y="95" font-size="8.5">data chega [não compareceu]</text>
+<line x1="250" y1="180" x2="250" y2="196" stroke="currentColor" stroke-width="1.2" marker-end="url(#a6)"/>
+<path d="M85,45 C60,90 70,140 80,150" fill="none" stroke="currentColor" stroke-width="1.1" marker-end="url(#a6)"/><text x="10" y="95" font-size="8.5">paciente cancela</text>
+<path d="M240,45 C160,90 130,140 130,150" fill="none" stroke="currentColor" stroke-width="1.1" marker-end="url(#a6)"/><text x="140" y="115" font-size="8.5">paciente cancela</text>
+<line x1="90" y1="180" x2="90" y2="196" stroke="currentColor" stroke-width="1.2" marker-end="url(#a6)"/>
+<defs><marker id="a6" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="currentColor"/></marker></defs>
+</svg></div>
+<p>Repare: tanto "Agendada" quanto "Confirmada" podem levar a "Cancelada" — o cancelamento pode acontecer em mais de um ponto do ciclo.</p>`
+        }
+      ],
+      colocandoEmPratica: {
+        enunciado: `<p><strong>Adicionando um novo caminho</strong> (15 minutos, em dupla)</p>
+<p>O hospital quer adicionar a possibilidade de "reagendar" uma consulta Confirmada, voltando ela para o estado Agendada com uma nova data. Desenhem essa nova transição no diagrama, indicando o evento que a dispara. Depois, respondam: essa nova seta deveria também sair do estado Agendada (permitir reagendar antes mesmo de confirmar)? Justifiquem.</p>`,
+        dica: `Pensem se faz sentido reagendar algo que ainda nem foi confirmado — às vezes a resposta é "sim, mas por um caminho diferente".`
+      },
+      quiz: [
+        {
+          question: `O que representa a condição de guarda "[paciente não compareceu]" numa transição?`,
+          options: [
+            `O nome de um novo estado`,
+            `Uma condição que precisa ser verdadeira para aquela transição específica acontecer`,
+            `Um erro no sistema`,
+            `O tempo que a transição demora`
+          ],
+          correct: 1,
+          feedback: `A condição de guarda, entre colchetes, restringe quando aquela transição específica é válida — o mesmo evento pode levar a lugares diferentes dependendo dela.`
+        }
+      ],
+      sintese: [
+        `Condições de guarda (entre colchetes) permitem que o mesmo evento leve a estados diferentes, dependendo de uma condição.`,
+        `Um objeto pode ter mais de um caminho para o mesmo estado final (ex.: cancelar de "Agendada" ou de "Confirmada").`,
+        `Modelar exceções (faltas, cancelamentos) faz parte do ciclo de vida normal de um objeto — não é um caso à parte.`
+      ]
+    }
+  ]
+},
+{
+  id: 'm8',
+  title: `Módulo 8 — Componentes e implantação: como o sistema é organizado e onde ele roda`,
+  unidade: `Bloco 4`,
+  aulas: [
+    {
+      code: 'PS-M8A1',
+      title: `Diagrama de componentes`,
+      duracao: `50 minutos`,
+      habilidadeTecnica: `Identificar componentes de um sistema e representar suas interfaces fornecidas e requeridas.`,
+      habilidadeSocioemocional: `Pensar em "peças substituíveis" como forma de reduzir dependência de uma única solução.`,
+      pontoDePartida: {
+        titulo: `E se trocarmos o serviço de SMS?`,
+        texto: `<p>O sistema do hospital manda lembretes por SMS usando um serviço externo. Um dia, esse serviço fica caro demais e o hospital decide trocar por outro. Se o código de "enviar lembrete" estiver espalhado por todo o sistema, essa troca vira um pesadelo.</p>
+<p>Existe uma forma de organizar o sistema para que essa troca seja simples?</p>`
+      },
+      conceito: [
+        {
+          heading: `O que é um componente`,
+          html: `<p>Um <strong>componente</strong> é uma unidade substituível do sistema, com uma responsabilidade clara e uma forma bem definida de se comunicar com o resto — sua <strong>interface</strong>. Enquanto a interface não mudar, o componente pode ser trocado por outro por dentro, sem quebrar quem o usa.</p>`
+        },
+        {
+          heading: `Interface fornecida e interface requerida`,
+          html: `<p>Um componente pode <strong>fornecer</strong> uma interface (o que ele sabe fazer para os outros — desenhada como um "pirulito", um círculo na ponta de uma linha) e <strong>requerer</strong> uma interface de outro componente (o que ele precisa que alguém faça por ele — desenhada como um "soquete", um meio-círculo).</p>`
+        },
+        {
+          heading: `Exemplo: isolando o envio de lembretes`,
+          html: `<div style="overflow-x:auto"><svg viewBox="0 0 420 140" width="100%" style="max-width:420px" xmlns="http://www.w3.org/2000/svg">
+<style>text{font-family:Poppins,sans-serif;font-size:10px;fill:currentColor}</style>
+<rect x="20" y="40" width="140" height="50" fill="none" stroke="currentColor" stroke-width="1.3"/><text x="90" y="70" text-anchor="middle">Módulo de Agendamento</text>
+<rect x="240" y="40" width="160" height="50" fill="none" stroke="currentColor" stroke-width="1.3"/><text x="320" y="70" text-anchor="middle">Serviço de Notificação</text>
+<line x1="160" y1="65" x2="220" y2="65" stroke="currentColor" stroke-width="1.3"/>
+<path d="M210,55 A10,10 0 0 1 210,75" fill="none" stroke="currentColor" stroke-width="1.3"/>
+<circle cx="220" cy="65" r="6" fill="none" stroke="currentColor" stroke-width="1.3"/>
+<line x1="226" y1="65" x2="240" y2="65" stroke="currentColor" stroke-width="1.3"/>
+<text x="185" y="55" text-anchor="middle" font-size="8.5">requer</text><text x="230" y="55" text-anchor="middle" font-size="8.5">fornece</text>
+<text x="200" y="105" text-anchor="middle" font-size="8.5">interface: EnviarLembrete</text>
+</svg></div>
+<p>O Módulo de Agendamento não sabe (e não precisa saber) SE o Serviço de Notificação usa SMS, e-mail ou WhatsApp por dentro — ele só conhece a interface <code>EnviarLembrete</code>. Trocar o serviço por dentro não afeta o Módulo de Agendamento, desde que a interface continue a mesma.</p>`
+        }
+      ],
+      colocandoEmPratica: {
+        enunciado: `<p><strong>Encontrando componentes no sistema do hospital</strong> (10 minutos, em dupla)</p>
+<p>Além do "Módulo de Agendamento" e do "Serviço de Notificação", proponham mais 2 componentes plausíveis para o sistema do hospital (ex.: um componente de pagamento, um componente de autenticação). Para cada um, escrevam o nome de uma interface que ele forneceria.</p>`
+      },
+      quiz: [
+        {
+          question: `Qual é a principal vantagem de dividir um sistema em componentes com interfaces bem definidas?`,
+          options: [
+            `O sistema fica maior e mais impressionante`,
+            `Um componente pode ser trocado por outro sem afetar quem usa sua interface`,
+            `Não é mais necessário testar o sistema`,
+            `Os componentes deixam de precisar se comunicar entre si`
+          ],
+          correct: 1,
+          feedback: `Interfaces bem definidas permitem trocar a implementação por dentro de um componente sem quebrar quem depende dele.`
+        }
+      ],
+      sintese: [
+        `Um componente é uma unidade substituível do sistema, com responsabilidade clara e uma interface bem definida.`,
+        `Interface fornecida ("pirulito") é o que o componente oferece; interface requerida ("soquete") é o que ele precisa de outro componente.`,
+        `Boas interfaces permitem trocar a implementação de um componente sem afetar o resto do sistema.`
+      ]
+    },
+    {
+      code: 'PS-M8A2',
+      title: `Diagrama de implantação`,
+      duracao: `50 minutos`,
+      habilidadeTecnica: `Representar em que hardware/servidores cada componente do sistema é executado, usando nós e artefatos.`,
+      habilidadeSocioemocional: `Conectar decisões "invisíveis" (onde o código roda) com o funcionamento real percebido pelo usuário.`,
+      pontoDePartida: {
+        titulo: `Onde, exatamente, o sistema "mora"?`,
+        texto: `<p>Os diagramas anteriores mostraram QUAIS componentes existem no sistema do hospital. Mas nenhum deles disse ONDE, fisicamente, cada componente roda: no celular do paciente? Num servidor do hospital? Na nuvem?</p>`
+      },
+      conceito: [
+        {
+          heading: `Nó e artefato`,
+          html: `<p>Um <strong>nó</strong> representa um recurso computacional físico (ou virtual) — um servidor, um celular, um computador — desenhado como uma caixa em 3D. Dentro de um nó, colocamos os <strong>artefatos</strong>: os arquivos reais que rodam ali (um aplicativo instalado, um banco de dados, uma API publicada).</p>`
+        },
+        {
+          heading: `Caminho de comunicação`,
+          html: `<p>Uma linha entre dois nós representa um <strong>caminho de comunicação</strong> — normalmente uma rede. É comum anotar o protocolo usado (ex.: HTTPS) perto da linha.</p>`
+        },
+        {
+          heading: `Exemplo: onde o hospital roda`,
+          html: `<div style="overflow-x:auto"><svg viewBox="0 0 440 170" width="100%" style="max-width:440px" xmlns="http://www.w3.org/2000/svg">
+<style>text{font-family:Poppins,sans-serif;font-size:9.5px;fill:currentColor}</style>
+<g transform="translate(10,20)">
+  <path d="M5,15 L15,5 L95,5 L85,15 Z" fill="none" stroke="currentColor" stroke-width="1.2"/>
+  <path d="M85,15 L95,5 L95,55 L85,65 Z" fill="none" stroke="currentColor" stroke-width="1.2"/>
+  <rect x="5" y="15" width="80" height="50" fill="none" stroke="currentColor" stroke-width="1.2"/>
+  <text x="45" y="10" text-anchor="middle" font-size="8">Celular do paciente</text>
+  <rect x="15" y="30" width="60" height="20" fill="none" stroke="currentColor" stroke-width="1"/><text x="45" y="43" text-anchor="middle" font-size="8">App Hospital</text>
+</g>
+<g transform="translate(180,20)">
+  <path d="M5,15 L15,5 L105,5 L95,15 Z" fill="none" stroke="currentColor" stroke-width="1.2"/>
+  <path d="M95,15 L105,5 L105,55 L95,65 Z" fill="none" stroke="currentColor" stroke-width="1.2"/>
+  <rect x="5" y="15" width="90" height="50" fill="none" stroke="currentColor" stroke-width="1.2"/>
+  <text x="50" y="10" text-anchor="middle" font-size="8">Servidor de Aplicação</text>
+  <rect x="15" y="30" width="70" height="20" fill="none" stroke="currentColor" stroke-width="1"/><text x="50" y="43" text-anchor="middle" font-size="8">Módulo Agendamento</text>
+</g>
+<g transform="translate(320,20)">
+  <path d="M5,15 L15,5 L105,5 L95,15 Z" fill="none" stroke="currentColor" stroke-width="1.2"/>
+  <path d="M95,15 L105,5 L105,55 L95,65 Z" fill="none" stroke="currentColor" stroke-width="1.2"/>
+  <rect x="5" y="15" width="90" height="50" fill="none" stroke="currentColor" stroke-width="1.2"/>
+  <text x="50" y="10" text-anchor="middle" font-size="8">Servidor de Banco de Dados</text>
+  <rect x="15" y="30" width="70" height="20" fill="none" stroke="currentColor" stroke-width="1"/><text x="50" y="43" text-anchor="middle" font-size="8">SGBD</text>
+</g>
+<line x1="105" y1="55" x2="185" y2="55" stroke="currentColor" stroke-width="1.2"/><text x="110" y="90" font-size="8.5">HTTPS</text>
+<line x1="280" y1="55" x2="325" y2="55" stroke="currentColor" stroke-width="1.2"/><text x="270" y="90" font-size="8.5">conexão de banco</text>
+</svg></div>`
+        }
+      ],
+      colocandoEmPratica: {
+        enunciado: `<p><strong>Distribuindo os componentes</strong> (15 minutos, em dupla)</p>
+<p>Usando os 2 componentes extras que vocês propuseram na aula anterior (ex.: pagamento, autenticação), decidam em qual nó cada um deveria rodar (Celular do paciente, Servidor de Aplicação, Servidor de Banco de Dados, ou um novo nó que vocês proponham, como "Serviço de Pagamento externo"). Desenhem o diagrama de implantação atualizado.</p>`,
+        dica: `Componentes que lidam com dados sensíveis (pagamento, senha) raramente ficam só no celular do usuário — pensem por quê.`
+      },
+      quiz: [
+        {
+          question: `O que um "nó" representa num diagrama de implantação?`,
+          options: [`Uma classe do sistema`, `Um recurso computacional físico ou virtual, como um servidor`, `Um caso de uso`, `Um evento do diagrama de estados`],
+          correct: 1,
+          feedback: `Nó representa hardware (físico ou virtual) onde os artefatos do sistema efetivamente rodam.`
+        }
+      ],
+      sintese: [
+        `O diagrama de implantação mostra ONDE, fisicamente, cada parte do sistema roda.`,
+        `Nó é o recurso computacional (servidor, celular); artefato é o que roda dentro dele (app, banco de dados).`,
+        `Caminhos de comunicação entre nós geralmente representam redes, e vale anotar o protocolo usado.`
+      ]
+    }
+  ]
+},
+{
+  id: 'm9',
+  title: `Módulo 9 — Interfaces e relações avançadas`,
+  unidade: `Bloco 4`,
+  aulas: [
+    {
+      code: 'PS-M9A1',
+      title: `Interfaces, classes abstratas e realização`,
+      duracao: `50 minutos`,
+      habilidadeTecnica: `Distinguir herança (generalização) de realização (implementação de interface) e representá-las com a notação correta.`,
+      habilidadeSocioemocional: `Apreciar a diferença entre "ser um tipo de algo" e "saber fazer algo" como duas formas distintas de organizar o mundo.`,
+      pontoDePartida: {
+        titulo: `Notificação por SMS e por e-mail são "farinha do mesmo saco"?`,
+        texto: `<p>O sistema do hospital agora manda lembretes por SMS E por e-mail. As duas classes fazem a mesma coisa (enviar um lembrete), mas por dentro são completamente diferentes uma da outra — SMS usa uma operadora de telefonia, e-mail usa um servidor de e-mail.</p>
+<p>Faz sentido dizer que "NotificaçãoPorEmail é um tipo de NotificaçãoPorSMS"? Ou existe uma forma melhor de relacionar as duas?</p>`
+      },
+      conceito: [
+        {
+          heading: `Herança: "é um tipo de"`,
+          html: `<p>Como já vimos, a <strong>herança</strong> (ou generalização) conecta uma classe específica a uma mais geral quando elas realmente compartilham uma natureza comum — Médico "é um tipo de" Funcionário, por exemplo, faz sentido porque ambos compartilham atributos reais (nome, salário).</p>`
+        },
+        {
+          heading: `Realização: "sabe fazer"`,
+          html: `<p>Quando duas classes não compartilham uma natureza comum, mas prometem <strong>saber fazer a mesma coisa</strong>, usamos uma <strong>interface</strong> — um contrato que só diz "quem me implementa promete ter este método", sem dizer como. NotificaçãoPorSMS e NotificaçãoPorEmail podem, cada uma, <strong>realizar</strong> (implementar) uma interface chamada <code>Notificavel</code>, que promete o método <code>enviar()</code>.</p>
+<p>A notação muda: herança usa uma <strong>linha contínua</strong> com ponta triangular vazia; realização usa uma <strong>linha tracejada</strong> com a mesma ponta triangular vazia.</p>`
+        },
+        {
+          heading: `Exemplo visual`,
+          html: `<div style="overflow-x:auto"><svg viewBox="0 0 320 190" width="100%" style="max-width:320px" xmlns="http://www.w3.org/2000/svg">
+<style>text{font-family:Poppins,sans-serif;font-size:10px;fill:currentColor}</style>
+<rect x="100" y="10" width="120" height="30" fill="none" stroke="currentColor" stroke-width="1.3" stroke-dasharray="0"/><text x="160" y="22" text-anchor="middle" font-style="italic" font-size="9">&lt;&lt;interface&gt;&gt;</text><text x="160" y="34" text-anchor="middle" font-weight="600">Notificavel</text>
+<rect x="10" y="130" width="120" height="40" fill="none" stroke="currentColor" stroke-width="1.3"/><text x="70" y="150" text-anchor="middle" font-weight="600">NotificaçãoPorSMS</text><text x="70" y="163" text-anchor="middle" font-size="8.5">+ enviar()</text>
+<rect x="190" y="130" width="120" height="40" fill="none" stroke="currentColor" stroke-width="1.3"/><text x="250" y="150" text-anchor="middle" font-weight="600">NotificaçãoPorEmail</text><text x="250" y="163" text-anchor="middle" font-size="8.5">+ enviar()</text>
+<line x1="70" y1="130" x2="140" y2="45" stroke="currentColor" stroke-width="1.1" stroke-dasharray="4,3"/><polygon points="150,40 138,44 140,52" fill="none" stroke="currentColor" stroke-width="1.1"/>
+<line x1="250" y1="130" x2="185" y2="45" stroke="currentColor" stroke-width="1.1" stroke-dasharray="4,3"/><polygon points="176,40 178,52 190,47" fill="none" stroke="currentColor" stroke-width="1.1"/>
+<text x="160" y="100" text-anchor="middle" font-size="8.5" opacity="0.7">linha tracejada = realização ("sabe fazer")</text>
+</svg></div>
+<p>Ambas as classes prometem ter um método <code>enviar()</code>, mas nenhuma delas "é um tipo de" a outra — elas só compartilham um contrato.</p>`
+        }
+      ],
+      colocandoEmPratica: {
+        enunciado: `<p><strong>Herança ou realização?</strong> (10 minutos, em grupo)</p>
+<p>Para cada par abaixo, decidam se a relação correta é herança (compartilham natureza comum) ou realização (só compartilham um comportamento prometido), e justifiquem:</p>
+<ol>
+<li>Médico e Recepcionista, em relação a Funcionário.</li>
+<li>ImpressoraPDF e ImpressoraFísica, em relação a uma interface Imprimível.</li>
+<li>Cachorro e Gato, em relação a Animal.</li>
+</ol>`
+      },
+      quiz: [
+        {
+          question: `Qual é a diferença central entre herança e realização?`,
+          options: [
+            `Não há diferença, a notação é igual`,
+            `Herança conecta classes com natureza comum ("é um tipo de"); realização conecta uma classe a um contrato de comportamento ("sabe fazer"), sem natureza comum`,
+            `Realização só pode ser usada uma vez por classe; herança pode ser usada várias vezes`,
+            `Herança é mais rápida de executar que realização`
+          ],
+          correct: 1,
+          feedback: `Herança pressupõe uma natureza compartilhada real; realização é apenas o cumprimento de um contrato (interface), mesmo entre classes muito diferentes por dentro.`
+        }
+      ],
+      sintese: [
+        `Herança ("é um tipo de") conecta classes com natureza comum real.`,
+        `Realização ("sabe fazer") conecta uma classe a uma interface, um contrato de comportamento — usada com linha tracejada e ponta triangular vazia.`,
+        `Duas classes bem diferentes por dentro podem realizar a mesma interface, desde que prometam os mesmos métodos.`
+      ]
+    },
+    {
+      code: 'PS-M9A2',
+      title: `Casos de uso avançados: include e extend`,
+      duracao: `50 minutos`,
+      habilidadeTecnica: `Aplicar as relações <<include>> e <<extend>> para reaproveitar e estender casos de uso.`,
+      habilidadeSocioemocional: `Fechar a trilha reconhecendo o quanto já foi construído, com autonomia para revisar o próprio percurso.`,
+      pontoDePartida: {
+        titulo: `Toda ação do hospital exige login — vamos repetir isso em cada caso de uso?`,
+        texto: `<p>"Agendar consulta", "Cancelar consulta" e "Emitir relatório" — os três exigem que o usuário esteja autenticado primeiro. Desenhar "autenticar" dentro da especificação de cada um dos três é repetitivo e fácil de esquecer de atualizar em algum lugar se a regra mudar.</p>`
+      },
+      conceito: [
+        {
+          heading: `<<include>>: comportamento obrigatório e reaproveitado`,
+          html: `<p>Quando um caso de uso <strong>sempre</strong> precisa de um pedaço de comportamento que também é usado em outros lugares, extraímos esse pedaço para um caso de uso à parte e o conectamos com uma seta tracejada rotulada <code>&lt;&lt;include&gt;&gt;</code>, apontando <strong>do caso de uso principal para o incluído</strong>.</p>`
+        },
+        {
+          heading: `<<extend>>: comportamento opcional/condicional`,
+          html: `<p>Quando um comportamento só acontece <strong>às vezes</strong>, sob uma condição, usamos <code>&lt;&lt;extend&gt;&gt;</code> — uma seta tracejada apontando <strong>do caso de uso opcional para o caso de uso principal</strong> (o contrário do include!). Exemplo: "Notificar reembolso" só acontece quando "Cancelar consulta" envolve uma consulta paga.</p>`
+        },
+        {
+          heading: `Exemplo visual`,
+          html: `<div style="overflow-x:auto"><svg viewBox="0 0 380 170" width="100%" style="max-width:380px" xmlns="http://www.w3.org/2000/svg">
+<style>text{font-family:Poppins,sans-serif;font-size:9.5px;fill:currentColor}</style>
+<ellipse cx="80" cy="30" rx="65" ry="18" fill="none" stroke="currentColor" stroke-width="1.3"/><text x="80" y="34" text-anchor="middle">Agendar consulta</text>
+<ellipse cx="80" cy="100" rx="65" ry="18" fill="none" stroke="currentColor" stroke-width="1.3"/><text x="80" y="104" text-anchor="middle">Autenticar usuário</text>
+<line x1="80" y1="48" x2="80" y2="82" stroke="currentColor" stroke-width="1.1" stroke-dasharray="4,3" marker-end="url(#a7)"/><text x="88" y="68" font-size="8">&lt;&lt;include&gt;&gt;</text>
+<ellipse cx="280" cy="30" rx="65" ry="18" fill="none" stroke="currentColor" stroke-width="1.3"/><text x="280" y="34" text-anchor="middle">Cancelar consulta</text>
+<ellipse cx="280" cy="100" rx="70" ry="18" fill="none" stroke="currentColor" stroke-width="1.3"/><text x="280" y="104" text-anchor="middle">Notificar reembolso</text>
+<line x1="280" y1="82" x2="280" y2="48" stroke="currentColor" stroke-width="1.1" stroke-dasharray="4,3" marker-end="url(#a7)"/><text x="288" y="68" font-size="8">&lt;&lt;extend&gt;&gt;</text>
+<defs><marker id="a7" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="currentColor"/></marker></defs>
+</svg></div>
+<p>Repare a direção da seta: no include, a seta sai do caso de uso "de cima" (quem inclui) para o "de baixo" (quem é incluído). No extend, é o contrário — sai de quem estende para quem é estendido.</p>`
+        }
+      ],
+      colocandoEmPratica: {
+        enunciado: `<p><strong>Fechando o diagrama de casos de uso do hospital</strong> (20 minutos, em dupla — atividade de encerramento da trilha)</p>
+<p>Peguem o diagrama de casos de uso que vocês desenharam no Módulo 2 (Agendar consulta, Cancelar consulta, Emitir relatório) e:</p>
+<ol>
+<li>Extraiam "Autenticar usuário" como um caso de uso à parte, conectado por <code>&lt;&lt;include&gt;&gt;</code> a todos os que exigem login.</li>
+<li>Proponham um caso de uso opcional conectado por <code>&lt;&lt;extend&gt;&gt;</code> a algum dos já existentes.</li>
+</ol>
+<p>Para fechar: revisem rapidamente os 9 módulos desta trilha e escrevam, em duas frases, qual diagrama vocês acham que vão usar primeiro num projeto real, e por quê.</p>`
+      },
+      quiz: [
+        {
+          question: `Na relação <<include>>, para onde aponta a seta?`,
+          options: [
+            `Do caso de uso incluído para o principal`,
+            `Do caso de uso principal para o caso de uso incluído`,
+            `Não tem seta, só uma linha`,
+            `Sempre para o ator`
+          ],
+          correct: 1,
+          feedback: `No include, a seta sai de quem inclui (o caso de uso principal) e aponta para o caso de uso incluído — o oposto da direção do extend.`
+        }
+      ],
+      sintese: [
+        `<<include>> reaproveita um comportamento obrigatório em vários casos de uso, com a seta apontando do principal para o incluído.`,
+        `<<extend>> representa um comportamento opcional/condicional, com a seta apontando do caso opcional para o principal — direção oposta ao include.`,
+        `Com os 9 módulos desta trilha, você já tem um vocabulário real de design para começar a projetar sistemas pequenos e médios.`
+      ]
+    }
+  ]
+},
+];
 /* =========================================================
    MONTAGEM DOS MÓDULOS A PARTIR DOS DADOS BRUTOS
    Cada "aula" vira uma sequência de telas conforme as chaves
@@ -1173,7 +1582,8 @@ const BATCH_C = [
 const BIMESTRE_INFO = {
   1: { title:'Bloco 1 — Do processo ao desenho', weeks:['m1','m2'] },
   2: { title:'Bloco 2 — Estrutura e comportamento', weeks:['m3','m4'] },
-  3: { title:'Bloco 3 — Dados, arquitetura e projeto final', weeks:['m5','m6'] }
+  3: { title:'Bloco 3 — Dados, arquitetura e projeto final', weeks:['m5','m6'] },
+  4: { title:'Bloco 4 — UML avançado', weeks:['m7','m8','m9'] }
 };
 function bimestreOfWeek(wid) {
   for (const b in BIMESTRE_INFO) { if (BIMESTRE_INFO[b].weeks.includes(wid)) return +b; }
@@ -1254,15 +1664,15 @@ function saveState() { try { localStorage.setItem(STORAGE_KEY, JSON.stringify(st
 
 const LEVELS = [
   { min:0,   title:'Estagiário(a) de TI' },
-  { min:80,  title:'Leitor(a) de Diagramas' },
-  { min:180, title:'Modelador(a) Iniciante' },
-  { min:300, title:'Desenhista de Classes' },
-  { min:440, title:'Analista de Sistemas' },
-  { min:600, title:'Modelador(a) de Dados' },
-  { min:780, title:'Projetista de Sistemas' },
-  { min:980, title:'Especialista em Modelagem' },
-  { min:1200,title:'Arquiteto(a) de Soluções' },
-  { min:1450,title:'Mestre(a) da Arquitetura' }
+  { min:100, title:'Leitor(a) de Diagramas' },
+  { min:220, title:'Modelador(a) Iniciante' },
+  { min:370, title:'Desenhista de Classes' },
+  { min:540, title:'Analista de Sistemas' },
+  { min:740, title:'Modelador(a) de Dados' },
+  { min:960, title:'Projetista de Sistemas' },
+  { min:1200,title:'Especialista em Modelagem' },
+  { min:1470,title:'Arquiteto(a) de Soluções' },
+  { min:1780,title:'Mestre(a) da Arquitetura' }
 ];
 function levelOf(xp) { let idx=0; for (let i=0;i<LEVELS.length;i++){ if (xp>=LEVELS[i].min) idx=i; } return idx; }
 
@@ -1271,7 +1681,8 @@ const BADGES = [
   { id:'modulo1',        name:'Primeiro Mapa', desc:'Conclua o Módulo 1', icon:'bulb', check: s => isModuleFullyVisited('m1', s) },
   { id:'bloco1',         name:'Leitor de Diagramas', desc:'Conclua o Bloco 1', icon:'trophy', check: s => bimestreDone(1, s) },
   { id:'bloco2',         name:'Modelador de Sistemas', desc:'Conclua o Bloco 2', icon:'trophy', check: s => bimestreDone(2, s) },
-  { id:'bloco3',         name:'Arquiteto de Soluções', desc:'Conclua a trilha inteira', icon:'trophy', check: s => bimestreDone(3, s) },
+  { id:'bloco3',         name:'Arquiteto de Soluções', desc:'Conclua o Bloco 3', icon:'trophy', check: s => bimestreDone(3, s) },
+  { id:'bloco4',         name:'Mestre em UML', desc:'Conclua a trilha inteira (Bloco 4 — UML avançado)', icon:'trophy', check: s => bimestreDone(4, s) },
   { id:'sequencia5',     name:'Sequência de Ouro', desc:'Acerte 5 quizzes seguidos', icon:'fire', check: s => s.bestStreak>=5 },
   { id:'perfeccionista', name:'Sem Erros', desc:'Acerte um quiz na primeira tentativa', icon:'star', check: s => Object.values(s.quizAnswers).some(q => Object.values(q).some(a => a && a.firstTry && a.correct)) },
   { id:'maratonista',    name:'Maratonista', desc:'Visite 15 telas ou mais', icon:'heart', check: s => Object.keys(s.visited).length>=15 }
@@ -1589,7 +2000,7 @@ function moduleProgress(mi) {
 function buildSidebar() {
   const nav = document.getElementById('sidebar');
   nav.innerHTML = '';
-  [1,2,3].forEach(b => {
+  Object.keys(BIMESTRE_INFO).map(Number).sort((a,b)=>a-b).forEach(b => {
     const info = BIMESTRE_INFO[b];
     const group = el('div','bim-group');
     const score = bimestreScore(b);
@@ -1650,7 +2061,7 @@ function renderMap() {
   c.appendChild(el('div','screen-kicker','Sua jornada'));
   c.appendChild(el('h1','screen-title','Mapa da trilha'));
   const wrap = el('div','mapwrap');
-  [1,2,3].forEach(b => {
+  Object.keys(BIMESTRE_INFO).map(Number).sort((a,b)=>a-b).forEach(b => {
     const info = BIMESTRE_INFO[b];
     const box = el('div','map-bim');
     const score = bimestreScore(b);
