@@ -1593,17 +1593,18 @@ function bimestreOfWeek(wid) {
 const SCREEN_META = {
   intro:    { label:'Ponto de partida',      xp:8,  icon:'flag' },
   concept:  { label:'Conceito',              xp:12, icon:'bulb' },
-  practice: { label:'Colocando em prática',  xp:15, icon:'hand' },
+  practice: { label:'Registro de aula',      xp:15, icon:'hand' },
   quiz:     { label:'Quiz',                  xp:0,  icon:'quiz' },
   social:   { label:'Ser sempre +',          xp:15, icon:'heart' },
   summary:  { label:'Síntese',               xp:6,  icon:'star' },
   activity: { label:'Atividade prática',     xp:25, icon:'hand' }
 };
 
-function buildScreensForAula(aula, aulaIdx) {
+function buildScreensForAula(aula, aulaIdx, weekId) {
   const screens = [];
   const n = aulaIdx + 1;
-  const push = (type, extra) => screens.push(Object.assign({ id: aula.code+'-'+type, title: 'Aula '+n+' — '+SCREEN_META[type].label, type, aulaTitle: aula.title, aulaCode: aula.code }, extra));
+  const weekNum = weekId ? String(+weekId.replace(/\D/g,'')) : '';
+  const push = (type, extra) => screens.push(Object.assign({ id: aula.code+'-'+type, title: type==='practice' ? 'Registro de aula — Módulo '+weekNum : 'Aula '+n+' — '+SCREEN_META[type].label, type, aulaTitle: aula.title, aulaCode: aula.code }, extra));
 
   if (aula.pontoDePartida) push('intro', { data: aula.pontoDePartida });
   if (aula.conceito && aula.conceito.length) push('concept', { data: { blocks: aula.conceito, skills: { tecnica: aula.habilidadeTecnica, socio: aula.habilidadeSocioemocional }, duracao: aula.duracao } });
@@ -1618,7 +1619,7 @@ function buildScreensForAula(aula, aulaIdx) {
 
 function buildModule(week) {
   const screens = [];
-  week.aulas.forEach((aula, i) => { screens.push(...buildScreensForAula(aula, i)); });
+  week.aulas.forEach((aula, i) => { screens.push(...buildScreensForAula(aula, i, week.id)); });
   return { id: week.id, title: week.title, unidade: week.unidade, bimestre: bimestreOfWeek(week.id), screens };
 }
 
